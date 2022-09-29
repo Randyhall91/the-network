@@ -1,28 +1,16 @@
 <template>
-  <span class="navbar-text">
-    <button
-      class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
-      @click="login"
-      v-if="!user.isAuthenticated"
-    >
+  <span class="navbar-text mt-3">
+    <!-- Login Button -->
+    <button class="btn selectable text-dark lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+      v-if="!user.isAuthenticated">
       Login
     </button>
 
-    <div class="dropdown my-2 my-lg-0" v-else>
-      <div
-        class="dropdown-toggle selectable"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        id="authDropdown"
-      >
+    <div class="dropdown text-center my-2 my-lg-0" v-else>
+      <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
         <div v-if="account.picture || user.picture">
-          <img
-            :src="account.picture || user.picture"
-            alt="account photo"
-            height="40"
-            class="rounded"
-          />
-          <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span>
+          <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
+          <!-- <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span> -->
         </div>
       </div>
       <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
@@ -38,6 +26,15 @@
       </div>
     </div>
   </span>
+  <span class="gap-2 d-flex justify-content-center">
+    <div v-if="account.name || user.name">
+      <p><strong>{{account.name || user.name}}</strong></p>
+    </div>
+    <div v-if="account.github || user.github">
+      <div class="i mdi mdi-github">{{account.github || user.github}}</div>
+    </div>
+
+  </span>
 </template>
 
 <script>
@@ -46,6 +43,8 @@ import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
 export default {
   setup() {
+    // console.log(AppState.user);
+
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),

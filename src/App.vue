@@ -1,21 +1,30 @@
 <template>
+
   <header>
     <Navbar />
   </header>
-  <main>
-    <router-view />
-  </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 pt-5 bar-height">
+        <Login />
+      </div>
+      <div class="col-md-6">
+        <router-view />
+      </div>
+      <div class="col-md-3 bar-height">
+        <GiphsComponent />
+      </div>
     </div>
-  </footer>
+  </main>
+
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import GiphsComponent from './components/GiphsComponent.vue'
+import Login from './components/Login.vue'
 
 export default {
   setup() {
@@ -23,9 +32,14 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, GiphsComponent, Login }
 }
 </script>
 <style lang="scss">
+.bar-height {
+  height: 100vh;
+  background-color: var(--bs-secondary)
+}
+
 @import "./assets/scss/main.scss";
 </style>
