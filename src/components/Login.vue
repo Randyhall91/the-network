@@ -1,40 +1,47 @@
 <template>
-  <span class="navbar-text mt-3">
-    <!-- Login Button -->
-    <button class="btn selectable text-dark lighten-30 text-uppercase my-2 my-lg-0" @click="login"
-      v-if="!user.isAuthenticated">
-      Login
-    </button>
+  <div class="card bg-light bg-opacity-75">
+    <span class="navbar-text mt-3">
+      <!-- Login Button -->
 
-    <div class="dropdown text-center my-2 my-lg-0" v-else>
-      <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
-        <div v-if="account.picture || user.picture">
-          <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded" />
-          <!-- <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span> -->
+      <button class="btn selectable text-dark lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+        v-if="!user.isAuthenticated">
+        Login
+      </button>
+
+      <div class="dropdown text-center my-2 my-lg-0" v-else>
+        <div class="dropdown-toggle selectable" data-bs-toggle="dropdown" aria-expanded="false" id="authDropdown">
+
+
+
+          <img :src="account.picture" alt="account photo" height="75" class="rounded" />
+
+
         </div>
-      </div>
-      <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
-        <router-link :to="{ name: 'Account' }">
-          <div class="list-group-item list-group-item-action hoverable">
-            Manage Account
+        <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
+          <router-link :to="{ name: 'Account' }">
+            <div class="list-group-item list-group-item-action hoverable">
+              Manage Account
+            </div>
+          </router-link>
+          <div class="list-group-item list-group-item-action hoverable text-danger" @click="logout">
+            <i class="mdi mdi-logout"></i>
+            logout
           </div>
-        </router-link>
-        <div class="list-group-item list-group-item-action hoverable text-danger" @click="logout">
-          <i class="mdi mdi-logout"></i>
-          logout
         </div>
       </div>
-    </div>
-  </span>
-  <span class="gap-2 d-flex justify-content-center">
-    <div v-if="account.name || user.name">
-      <p><strong>{{user.nickname}}</strong></p>
-    </div>
-    <div v-if="account.github || user.github">
-      <div class="i mdi mdi-github">{{account.github || user.github}}</div>
-    </div>
+    </span>
+    <span class="mt-2 d-flex flex-column text-center">
+      <div v-if="account.name">
+        <p><strong>{{account.name}}</strong></p>
+      </div>
+      <div v-if="account.github">
+        <a :href="account.github">
+          <i class="i mdi mdi-github selectable"></i>
+        </a>
+      </div>
 
-  </span>
+    </span>
+  </div>
 </template>
 
 <script>

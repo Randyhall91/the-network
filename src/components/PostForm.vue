@@ -1,8 +1,10 @@
 <template>
-  <div class="card">
+  <div class="card elevation-2">
     <div class="card-body">
-      <img :src="user.picture" :alt="user.name" :title="user.name" height="50" class="rounded">
-      {{user.nickname}}
+      <!-- <router-link :to="{name:'Profile', params: {id: account.id}}">
+        <img :src="account.picture" :alt="account.name" :title="account.name" height="50" class="rounded selectable">
+      </router-link> -->
+      {{account.name}}
       <form @submit.prevent="handleSubmit">
         <div class="form-floating my-3">
           <textarea class="form-control" id="body" v-model="editable.body" rows="3" required></textarea>
@@ -11,7 +13,7 @@
         <div class="d-flex justify-content-between">
           <div class="form-floating ">
             <input class="form-control" type="url" v-model="editable.imgUrl" id="picUrl" placeholder="url">
-            <label for="picUrl">Link your Pic!</label>
+            <label for="picUrl">Link your pic or giph!</label>
           </div>
           <div>
             <button type="submit" class="btn btn-primary">Post</button>
@@ -27,7 +29,6 @@
 import { ref } from 'vue';
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState.js';
-import { Post } from '../models/Post.js';
 import { contentService } from '../services/ContentService.js';
 import Pop from '../utils/Pop.js';
 
@@ -37,6 +38,7 @@ export default {
     const editable = ref({})
     return {
       editable,
+      account: computed(() => AppState.account),
       user: computed(() => AppState.user),
       async handleSubmit() {
         try {

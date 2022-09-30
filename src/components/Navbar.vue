@@ -18,16 +18,34 @@
         </li> -->
       </ul>
       <!-- LOGIN COMPONENT HERE -->
-      Search Bar
+      <form @submit.prevent="getSearch()">
+        <input class="rounded me-1" type="search" v-model="editable.search" name="search" id="search">
+        <button class="btn btn-sm btn-primary rounded" type="submit">Search</button>
+      </form>
     </div>
   </nav>
 </template>
 
 <script>
+import { ref } from 'vue';
+import { contentService } from '../services/ContentService.js';
+import Pop from '../utils/Pop.js';
 import Login from './Login.vue'
 export default {
   setup() {
-    return {}
+    const editable = ref({})
+    return {
+      editable,
+      async getSearch() {
+        try {
+          // TODO get Search functionality working
+          await contentService.getSearch(editable.value)
+        } catch (error) {
+          Pop.error('[GetSearch]', error)
+        }
+      }
+
+    }
   },
   components: { Login }
 }
