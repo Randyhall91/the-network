@@ -39,7 +39,7 @@ export default {
       async getSearch() {
         try {
           // TODO get Search functionality working
-          await contentService.getSearch(editable.value)
+          await contentService.getSearch(editable.value.search)
         } catch (error) {
           Pop.error('[GetSearch]', error)
         }

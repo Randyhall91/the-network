@@ -22,7 +22,6 @@
       <!-- TODO make dropdown menu for delete/edit -->
     </div>
     <div class="d-flex">
-      <!-- TODO RouterLink to post creators profile page -->
       <router-link :to="{name:'Profile', params: {id: post.creator.id}}">
         <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name" height="50"
           class="rounded selectable">
@@ -74,7 +73,8 @@ export default {
     return {
       async deletePost(id) {
         try {
-          await contentService.deletePost(id)
+          if (await Pop.confirm('Are you sure you want to delete this post?'))
+            await contentService.deletePost(id)
         } catch (error) {
           Pop.error('[DeletePost]', error)
         }

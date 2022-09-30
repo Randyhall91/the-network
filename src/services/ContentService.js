@@ -15,11 +15,8 @@ class ContentService {
     // console.log(AppState.giphs);
   }
   async getPosts(page = '') {
-    const res = await Sandboxapi.get('api/posts', {
-      params: {
-        page
-      }
-    })
+    const res = await Sandboxapi.get('api/posts', page)
+
     // console.log(res.data.posts);
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.nextPage = res.data.older
@@ -57,7 +54,7 @@ class ContentService {
   }
   async deletePost(id) {
     //TODO get Pop Confirm working
-    Pop.confirm('Are you sure you want to delete this post?')
+
 
     const res = await Sandboxapi.delete(`api/posts/${id}`)
     AppState.posts = AppState.posts.filter(p => p.id != id)

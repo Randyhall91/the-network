@@ -6,6 +6,7 @@
   <div>
     <PostCard v-for="p in post" :post="p" />
   </div>
+  <!-- <Pagenation /> -->
 
 
 
@@ -19,6 +20,7 @@ import { contentService } from '../services/ContentService.js';
 import Pop from '../utils/Pop.js';
 import PostCard from '../components/PostCard.vue';
 import PostForm from '../components/PostForm.vue';
+import Pagenation from '../components/Pagenation.vue';
 
 export default {
   setup() {
@@ -39,7 +41,7 @@ export default {
       post: computed(() => AppState.posts),
     };
   },
-  components: { PostCard, PostForm }
+  components: { PostCard, PostForm, Pagenation }
 }
 </script>
 
