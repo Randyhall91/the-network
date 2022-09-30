@@ -5,13 +5,13 @@
   </header>
   <main class="container-fluid">
     <div class="row">
-      <div class="col-md-3 pt-5 bar-height">
+      <div class="col-md-2 pt-5 bar-height">
         <Login />
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8 p-5">
         <router-view />
       </div>
-      <div class="col-md-3 bar-height">
+      <div class="col-md-2 bar-height">
         <GiphsComponent />
       </div>
     </div>

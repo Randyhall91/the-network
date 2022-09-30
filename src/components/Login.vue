@@ -28,7 +28,7 @@
   </span>
   <span class="gap-2 d-flex justify-content-center">
     <div v-if="account.name || user.name">
-      <p><strong>{{account.name || user.name}}</strong></p>
+      <p><strong>{{user.nickname}}</strong></p>
     </div>
     <div v-if="account.github || user.github">
       <div class="i mdi mdi-github">{{account.github || user.github}}</div>

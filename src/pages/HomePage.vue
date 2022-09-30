@@ -1,7 +1,10 @@
 <template>
+  <div>
+    <PostForm />
+  </div>
 
   <div>
-    <PostCard v-for="p in posts" :post="p" />
+    <PostCard v-for="p in post" :post="p" />
   </div>
 
 
@@ -15,6 +18,7 @@ import { AppState } from '../AppState.js';
 import { contentService } from '../services/ContentService.js';
 import Pop from '../utils/Pop.js';
 import PostCard from '../components/PostCard.vue';
+import PostForm from '../components/PostForm.vue';
 
 export default {
   setup() {
@@ -32,10 +36,10 @@ export default {
     });
 
     return {
-      posts: computed(() => AppState.posts),
+      post: computed(() => AppState.posts),
     };
   },
-  components: { PostCard }
+  components: { PostCard, PostForm }
 }
 </script>
 
