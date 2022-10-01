@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Pagenation />
+  </div>
+  <div>
     <PostForm />
   </div>
 
@@ -21,8 +24,12 @@ import Pop from '../utils/Pop.js';
 import PostCard from '../components/PostCard.vue';
 import PostForm from '../components/PostForm.vue';
 import Pagenation from '../components/Pagenation.vue';
+import { Post } from '../models/Post.js';
 
 export default {
+  props: {
+    post: { type: Post }
+  },
   setup() {
     async function getPosts() {
       try {

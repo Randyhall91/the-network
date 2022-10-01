@@ -11,6 +11,6 @@ export const AppState = reactive({
   giphs: [],
   /** @type {import('./models/Posts.js').Posts[]} */
   posts: [],
-  nextPage: '',
-  previousPage: '',
+  page: 1,
+  term: null,
 })

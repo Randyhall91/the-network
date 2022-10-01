@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Pagenation />
+  </div>
+  <div>
     <ProfileDetails :profile="activeProfile" />
   </div>
   <PostCard v-for="p in posts" :post="p" :key="p.id" />
@@ -15,7 +18,14 @@ import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { contentService } from '../services/ContentService.js';
+import Pagenation from '../components/Pagenation.vue';
+import { Post } from '../models/Post.js';
+import { Account } from '../models/Account.js';
 export default {
+  props: {
+    post: { type: Post },
+    profile: { type: Account }
+  },
   setup() {
     const route = useRoute()
     async function getPostsById() {
@@ -48,7 +58,7 @@ export default {
       activeProfile: computed(() => AppState.activeProfile)
     };
   },
-  components: { ProfileDetails, PostCard }
+  components: { ProfileDetails, PostCard, Pagenation }
 }
 </script>
 

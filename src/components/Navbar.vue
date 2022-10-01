@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center" @click="getPosts()">
         <h3>The Network</h3>
       </div>
     </router-link>
@@ -27,23 +27,38 @@
 </template>
 
 <script>
+import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
+import { AppState } from '../AppState.js';
+import { Post } from '../models/Post.js';
 import { contentService } from '../services/ContentService.js';
-import Pop from '../utils/Pop.js';
 import Login from './Login.vue'
 export default {
+  props: {
+    post: { type: Post }
+  },
   setup() {
     const editable = ref({})
     return {
+      post: computed(() => AppState.posts),
       editable,
       async getSearch() {
         try {
-          // TODO get Search functionality working
+
           await contentService.getSearch(editable.value.search)
         } catch (error) {
           Pop.error('[GetSearch]', error)
         }
-      }
+      },
+      async getPosts() {
+        try {
+          await contentService.getPosts();
+          // console.log(AppState.posts);
+        }
+        catch (error) {
+          Pop.error("[GetPosts]", error);
+        }
+      },
 
     }
   },
