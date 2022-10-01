@@ -16,33 +16,39 @@ class ContentService {
   }
   async getPosts(page = 1) {
     AppState.activeProfile = []
+    AppState.totalPages = 0
     const res = await Sandboxapi.get('api/posts', {
       params: {
         page
       }
     })
 
-    console.log('getPosts', res.data.posts);
+    console.log('getPosts', res.data);
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
+    AppState.totalPages = res.data.totalPages
   }
 
   async getPostsById(creatorId, page = 1) {
     AppState.posts = []
+    AppState.totalPages = 0
     const res = await Sandboxapi.get('api/posts', {
       params: {
         creatorId,
         page
       }
     })
-    console.log('GetpostsbyId', res.data.posts);
+    console.log('GetpostsbyId', res.data);
     // AppState.page =
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
+    AppState.totalPages = res.data.totalPages
   }
 
 
   async getSearch(formData, page = 1) {
+    AppState.posts = []
+    AppState.totalPages = 0
     const res = await Sandboxapi.get(`api/posts`, {
       params: {
         query: formData,
@@ -53,6 +59,7 @@ class ContentService {
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
     AppState.term = formData
+    AppState.totalPages = res.data.totalPages
   }
   async getProfileById(id, page) {
     const res = await Sandboxapi.get(`api/profiles/${id}`)

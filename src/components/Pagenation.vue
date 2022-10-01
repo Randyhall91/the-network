@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between">
     <button class="btn btn-secondary" :disabled="page == 1" @click="getPosts(-1)">Previous</button>
     <p>{{page}}</p>
-    <button class="btn btn-secondary" @click="getPosts(1)">Next</button>
+    <button class="btn btn-secondary" :disabled="totalPages == page" @click="getPosts(1)">Next</button>
   </div>
 
 </template>
@@ -21,28 +21,21 @@ export default {
   setup() {
     return {
       page: computed(() => AppState.page),
+      totalPages: computed(() => AppState.totalPages),
 
       async getPosts(n) {
         try {
           if (AppState.page == 1 && n == -1) { throw new Error('Hold up...turn back') }
+          if (AppState.page == AppState.totalPages && n == 1) { throw new Error('Hold up...Youve gone too far!') }
 
 
-          // switch (true) {
-          //   case (!AppState.term == true && AppState.activeProfile == true): await contentService.getPosts(AppState.page + n);
-          //     break;
-          //   case (AppState.term == true && !AppState.activeProfile == true): await contentService.getSearch(AppState.term, AppState.page + n)
-          //     break;
-          //   default: await contentService.getPosts(AppState.page + n);
-
-          // }
-
-
-
-
-          if (!AppState.term) {
+          if (!AppState.term && !AppState.activeProfile) {
             await contentService.getPosts(AppState.page + n)
 
-          } else {
+          } else if (AppState.activeProfile && !AppState.term) {
+            await contentService.getPostsById(AppState.activeProfile.id, AppState.page + n)
+          }
+          else {
             await contentService.getSearch(AppState.term, AppState.page + n)
           }
         }

@@ -3,7 +3,7 @@
     <Pagenation />
   </div>
   <div>
-    <PostForm />
+    <PostForm v-if="user.isAuthenticated" />
   </div>
 
   <div>
@@ -46,6 +46,8 @@ export default {
 
     return {
       post: computed(() => AppState.posts),
+      user: computed(() => AppState.user),
+      totalPages: computed(() => AppState.totalPages)
     };
   },
   components: { PostCard, PostForm, Pagenation }

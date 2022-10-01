@@ -1,26 +1,57 @@
 <template>
   <div class="card" v-if="profile">
 
-    <div class="cover-img" :style="{backgroundImage: `url(${profile.coverImg})`}">
+    <div class="cover-img mb-5" :style="{backgroundImage: `url(${profile.coverImg})`}">
     </div>
-    <div class="">
-      <img :src="profile.picture" alt="" height="120">
-      <h3>{{ profile.name }}
 
+    <img class="profile-photo" :src="profile.picture" alt="" height="120">
+
+    <div class="p-3">
+
+      <h3>{{ profile.name }} </h3>
+
+      <div class="d-flex">
+        Socials :
         <a v-if="profile.github" :href="profile.github" target="_blank">
           <i class="mdi mdi-github selectable"></i>
         </a>
+        <a v-if="profile.linkedin" :href="profile.linkedin" target="_blank">
+          <i class="mdi mdi-linkedin selectable"></i>
+        </a>
+      </div>
+      <div>
+        <div>
+          <p>Class of: {{profile.class}}</p>
+        </div>
 
-      </h3>
+        <div class="d-flex">
+
+          <p>Graduated: </p>
+          <div v-if="profile.graduated == true">
+            <i class="mdi mdi-duck" title="Graduated!"></i>
+          </div>
+          <div v-else>
+            <i class="mdi mdi-egg-outline" title="Still working on it..."></i>
+          </div>
+        </div>
+
+
+      </div>
+      <div>
+
+        Details: {{ profile.bio }}
+      </div>
+
+
+
     </div>
-    <p>{{ profile.bio }}</p>
-
-
   </div>
 </template>
 
 
-<script>
+<script>import { computed } from '@vue/reactivity';
+import { AppState } from '../AppState.js';
+
 import { Account } from '../models/Account.js';
 
 export default {
@@ -28,7 +59,10 @@ export default {
     profile: { type: Account }
   },
   setup() {
-    return {}
+
+    return {
+      profile: computed(() => AppState.activeProfile)
+    }
   }
 }
 </script>
@@ -39,7 +73,7 @@ export default {
   height: 25vh;
   padding: 3rem;
   // background-attachment: fixed;
-  // background-position: center;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -50,5 +84,16 @@ export default {
   font-weight: bold;
   letter-spacing: 0.08rem
     /* Second Color  in text-shadow is the blur */
+}
+
+.profile-photo {
+  clear: both;
+  display: block;
+  max-width: 150px;
+  margin: 0 auto 30px;
+  border-radius: 100%;
+  position: absolute;
+  top: 12rem;
+  left: 1rem;
 }
 </style>

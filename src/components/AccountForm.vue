@@ -14,8 +14,20 @@
         <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
       </div>
       <div>
-        <label for="coverImg">GitHub Account:</label>
-        <input type="url" class="form-control" v-model="editable.github" name="Deviantions">
+        <label for="github">GitHub Account:</label>
+        <input type="url" class="form-control" v-model="editable.github" name="Github">
+      </div>
+      <div>
+        <label for="linkedin">Linkedin Account:</label>
+        <input type="url" class="form-control" v-model="editable.linkedin" name="Linkedin">
+      </div>
+      <div>
+        <label for="class">Class of:</label>
+        <input type="text" class="form-control" v-model="editable.class" name="Class">
+      </div>
+      <div>
+        <label for="coverImg">Graduated?:</label>
+        <input class="form-check-input" type="checkbox" value="" v-model="editable.graduated" name="graduated">
       </div>
       <div>
         <label for="bio">About you:</label>

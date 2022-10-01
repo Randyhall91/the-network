@@ -13,4 +13,5 @@ export const AppState = reactive({
   posts: [],
   page: 1,
   term: null,
+  totalPages: 0,
 })

@@ -53,7 +53,6 @@ export default {
     })
     return {
       posts: computed(() => AppState.posts),
-      //TODO set Active Profile instead of my activeProfile
 
       activeProfile: computed(() => AppState.activeProfile)
     };

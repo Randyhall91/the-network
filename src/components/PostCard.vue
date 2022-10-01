@@ -26,10 +26,28 @@
         <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name" height="50"
           class="rounded selectable">
       </router-link>
-      <div class="ms-3">
+      <div class="ms-3 d-flex">
         <h2>{{post.creator.name}}</h2>
         <p>Posted: {{new Date(post.createdAt).toLocaleDateString('en-US',
         {month: 'short', year:'2-digit'})}}</p>
+
+        <a v-if="post.creator.github" :href="post.creator.github" target="_blank">
+          <i class="mdi mdi-github selectable"></i>
+        </a>
+        <a v-if="post.creator.linkedin" :href="post.creator.linkedin" target="_blank">
+          <i class="mdi mdi-linkedin selectable"></i>
+        </a>
+        <div class="d-flex">
+
+          <p>Graduated: </p>
+          <div v-if="post.creator.graduated == true">
+            <i class="mdi mdi-duck" title="Graduated!"></i>
+          </div>
+          <div v-else>
+            <i class="mdi mdi-egg-outline" title="Still working on it..."></i>
+          </div>
+        </div>
+
         <!-- TODO Format date with if created is >24hrs day-Month <24hrs say #of hours since creation -->
       </div>
     </div>
@@ -42,11 +60,11 @@
       </div>
     </div>
     <div v-if="user.isAuthenticated">
-      <div v-if="post.likes">
-        <i class="mdi mdi-heart" @click="likeToggle(post.id)"></i><span class="ms-1">{{post.likes.length}}</span>
+      <div v-if="post.likes == 0">
+        <i class="mdi mdi-heart-outline" @click="likeToggle(post.id)"></i>
       </div>
       <div v-else>
-        <i class="mdi mdi-heart-outline" @click="likeToggle(post.id)"></i>
+        <i class="mdi mdi-heart" @click="likeToggle(post.id)"></i><span class="ms-1">{{post.likes.length}}</span>
       </div>
     </div>
   </div>
