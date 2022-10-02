@@ -48,6 +48,7 @@ export default {
         try {
 
           await contentService.getSearch(editable.value.search, AppState.page)
+          editable.value = {}
         } catch (error) {
           Pop.error('[GetSearch]', error)
         }

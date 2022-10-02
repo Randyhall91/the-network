@@ -5,6 +5,7 @@
       <img :src="account.picture" :alt="account.name" :title="account.name" height="50" class="rounded">
       <!-- </router-link> -->
       {{account.name}}
+
       <form @submit.prevent="handleSubmit">
         <div class="form-floating my-3">
           <textarea class="form-control" id="body" v-model="editable.body" rows="3" required></textarea>
@@ -43,6 +44,7 @@ export default {
       async handleSubmit() {
         try {
           await contentService.submitPost(editable.value)
+          editable.value = {}
         } catch (error) {
           Pop.error('[handleSubmit]', error)
         }
