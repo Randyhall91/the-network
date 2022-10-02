@@ -9,10 +9,9 @@
   <div>
     <PostCard v-for="p in post" :post="p" />
   </div>
-  <!-- <Pagenation /> -->
-
-
-
+  <div>
+    <Pagenation />
+  </div>
 </template>
 
 <script>

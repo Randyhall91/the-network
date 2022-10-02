@@ -26,17 +26,19 @@
         <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name" height="50"
           class="rounded selectable">
       </router-link>
-      <div class="ms-3 d-flex">
+      <div class="ms-3 d-flex flex-column">
         <h2>{{post.creator.name}}</h2>
-        <p>Posted: {{new Date(post.createdAt).toLocaleDateString('en-US',
+        <p class="m-0">Posted: {{new Date(post.createdAt).toLocaleDateString('en-US',
         {month: 'short', year:'2-digit'})}}</p>
+        <div>
 
-        <a v-if="post.creator.github" :href="post.creator.github" target="_blank">
-          <i class="mdi mdi-github selectable"></i>
-        </a>
-        <a v-if="post.creator.linkedin" :href="post.creator.linkedin" target="_blank">
-          <i class="mdi mdi-linkedin selectable"></i>
-        </a>
+          <a v-if="post.creator.github" :href="post.creator.github" target="_blank">
+            <i class="mdi mdi-github selectable"></i>
+          </a>
+          <a v-if="post.creator.linkedin" :href="post.creator.linkedin" target="_blank">
+            <i class="mdi mdi-linkedin selectable"></i>
+          </a>
+        </div>
         <div class="d-flex">
 
           <p>Graduated: </p>

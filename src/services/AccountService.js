@@ -15,7 +15,8 @@ class AccountService {
   async editAccount(formData) {
     const res = await Sandboxapi.put('/account', formData)
     AppState.account = new Account(res.data)
-    console.log(res.data);
+    AppState.activeProfile = new Account(res.data)
+    // console.log(res.data);
 
   }
 }

@@ -56,7 +56,7 @@ import { Account } from '../models/Account.js';
 
 export default {
   props: {
-    profile: { type: Account }
+    // profile: { type: Account }
   },
   setup() {
 

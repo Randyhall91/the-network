@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <ProfileDetails :profile="account" />
+    <ProfileDetails :profile="user" class="elevation-2 mt-3" />
   </div>
   <div>
     <AccountForm class="elevation-2 mt-3" />
@@ -17,7 +17,7 @@ export default {
   setup() {
 
     return {
-      account: computed(() => AppState.account),
+      user: computed(() => AppState.user),
 
     };
   },

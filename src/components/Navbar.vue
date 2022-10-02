@@ -1,4 +1,5 @@
 <template>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center" @click="getPosts()">
@@ -32,6 +33,7 @@ import { ref } from 'vue';
 import { AppState } from '../AppState.js';
 import { Post } from '../models/Post.js';
 import { contentService } from '../services/ContentService.js';
+import Pop from '../utils/Pop.js';
 import Login from './Login.vue'
 export default {
   props: {
@@ -45,7 +47,7 @@ export default {
       async getSearch() {
         try {
 
-          await contentService.getSearch(editable.value.search)
+          await contentService.getSearch(editable.value.search, AppState.page)
         } catch (error) {
           Pop.error('[GetSearch]', error)
         }

@@ -19,7 +19,7 @@
         </div>
         <div class="dropdown-menu p-0 list-group w-100" aria-labelledby="authDropdown">
           <router-link :to="{ name: 'Account' }">
-            <div class="list-group-item list-group-item-action hoverable">
+            <div class="list-group-item list-group-item-action hoverable" @click="setActiveProfile()">
               Manage Account
             </div>
           </router-link>
@@ -34,9 +34,14 @@
       <div v-if="account.name">
         <p><strong>{{account.name}}</strong></p>
       </div>
-      <div v-if="account.github">
-        <a :href="account.github">
-          <i class="i mdi mdi-github selectable"></i>
+
+      <div>
+
+        <a v-if="account.github" :href="account.github" target="_blank">
+          <i class="mdi mdi-github selectable"></i>
+        </a>
+        <a v-if="account.linkedin" :href="account.linkedin" target="_blank">
+          <i class="mdi mdi-linkedin selectable"></i>
         </a>
       </div>
 
@@ -48,6 +53,8 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import { contentService } from '../services/ContentService.js'
+import Pop from '../utils/Pop.js'
 export default {
   setup() {
     // console.log(AppState.user);
@@ -60,6 +67,13 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      async setActiveProfile() {
+        try {
+          await contentService.getProfileById(AppState.account.id)
+        } catch (error) {
+          Pop.error('[SetActiveProfiletoAccount]', error)
+        }
       }
     }
   }

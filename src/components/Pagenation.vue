@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between mb-3">
     <button class="btn btn-secondary" :disabled="page == 1" @click="getPosts(-1)">Previous</button>
     <p>{{page}}</p>
     <button class="btn btn-secondary" :disabled="totalPages == page" @click="getPosts(1)">Next</button>

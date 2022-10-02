@@ -6,6 +6,9 @@
     <ProfileDetails :profile="activeProfile" />
   </div>
   <PostCard v-for="p in posts" :post="p" :key="p.id" />
+  <div>
+    <Pagenation />
+  </div>
 </template>
 
 
@@ -31,7 +34,6 @@ export default {
     async function getPostsById() {
       try {
         await contentService.getPostsById(route.params.id);
-        // console.log(AppState.posts);
       }
       catch (error) {
         Pop.error("[GetPostsById]", error);
@@ -40,7 +42,6 @@ export default {
     async function getProfileById() {
       try {
         await contentService.getProfileById(route.params.id);
-        // console.log(AppState.posts);
       }
       catch (error) {
         Pop.error("[GetProfile]", error);

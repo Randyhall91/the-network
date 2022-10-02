@@ -1,8 +1,8 @@
 <template>
   <div class="card elevation-2">
     <div class="card-body">
-      <!-- <router-link :to="{name:'Profile', params: {id: user.id}}"> -->
-      <img :src="account.picture" :alt="account.name" :title="account.name" height="50" class="rounded selectable">
+      <!-- <router-link :to="{name:'Profile', params:{id: account.id}}"> -->
+      <img :src="account.picture" :alt="account.name" :title="account.name" height="50" class="rounded">
       <!-- </router-link> -->
       {{account.name}}
       <form @submit.prevent="handleSubmit">

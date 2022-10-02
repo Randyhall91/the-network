@@ -1,9 +1,7 @@
-import { popScopeId } from "vue"
 import { AppState } from "../AppState.js"
 import { Account } from "../models/Account.js"
 import { Giph } from "../models/Giph.js"
 import { Post } from "../models/Post.js"
-import Pop from "../utils/Pop.js"
 import { Sandboxapi } from "./AxiosService.js"
 
 
@@ -23,7 +21,7 @@ class ContentService {
       }
     })
 
-    console.log('getPosts', res.data);
+    // console.log('getPosts', res.data);
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
     AppState.totalPages = res.data.totalPages
@@ -38,8 +36,7 @@ class ContentService {
         page
       }
     })
-    console.log('GetpostsbyId', res.data);
-    // AppState.page =
+    // console.log('GetpostsbyId', res.data);
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
     AppState.totalPages = res.data.totalPages
@@ -55,7 +52,7 @@ class ContentService {
         page
       }
     })
-    console.log('search results', res.data);
+    // console.log('search results', res.data);
     AppState.posts = res.data.posts.map(p => new Post(p))
     AppState.page = page
     AppState.term = formData
