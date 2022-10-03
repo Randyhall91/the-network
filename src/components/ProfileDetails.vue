@@ -1,11 +1,12 @@
 <template>
   <div class="card" v-if="profile">
 
-    <div class="cover-img mb-5" :style="{backgroundImage: `url(${profile.coverImg})`}">
+    <div v-if="profile.coverImg" class="cover-img mb-5" :style="{backgroundImage: `url(${profile.coverImg})`}">
     </div>
+    <div v-else class="cover-img mb-5" :style="{backgroundImage: 'url(http://thiscatdoesnotexist.com)'}"></div>
 
-    <img class="profile-photo" :src="profile.picture" alt="" height="120">
-
+    <img v-if="profile.picture" class="profile-photo" :src="profile.picture" alt="" height="120">
+    <img v-else class="profile-photo" :src="'http://thiscatdoesnotexist.com'" height="120">
     <div class="p-3">
 
       <h3>{{ profile.name }} </h3>

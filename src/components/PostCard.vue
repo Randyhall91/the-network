@@ -58,7 +58,7 @@
         {{post.body}}
       </div>
       <div class="text-center" v-if="post.imgUrl">
-        <img :src="post.imgUrl" alt="" class="img-fluid">
+        <img :src="post.imgUrl" alt="//thiscatdoesnotexist.com" class="img-fluid">
       </div>
     </div>
     <div v-if="user.isAuthenticated">
